@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ProjectManager</title>
+    <link rel="stylesheet" href="app.css" />
+    <script src="dist/app.js" defer></script>
+  </head>
+  <body>
+    <!-- // UI template 1 with ID: prject-input -->
+    <template id="project-input">
+      <!-- // Form with for drag and drop -->
+      <form>
+        <!-- // Form input: text and label: title -->
+        <div class="form-control">
+          <label for="title">Title</label>
+          <input type="text" id="title" />
+        </div>
+        <!-- // Form textarea with 3 rows and label: description -->
+        <div class="form-control">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3"></textarea>
+        </div>
+        <!-- // Form input: number and label People -->
+        <div class="form-control">
+          <label for="people">People</label>
+          <input type="number" id="people" step="1" min="0" max="10" />
+        </div>
+
+        <!-- // Form button: submit -->
+        <button type="submit">ADD PROJECT</button>
+      </form>
+    </template>
+
+    <!-- // UI template 2 with ID: single-project -->
+    <template id="single-project">
+      <!-- // Incoming List to consider for later -->
+      <li></li>
+    </template>
+
+    <!-- // UI template 3 with ID: project-list -->
+    <template id="project-list">
+      <!-- // Projects Section -->
+      <section class="projects">
+        <header>
+          <!-- // Incoming header -->
+          <h2></h2>
+        </header>
+        <!-- // Incoming unordered List -->
+        <ul></ul>
+      </section>
+    </template>
+    <!-- // Main app with ID: app -->
+    <div id="app"></div>
+  </body>
+</html>
+
+<!-- // 1. UI: for form // 2. UI: for single-project // 3. UI: incommig project-list -->
