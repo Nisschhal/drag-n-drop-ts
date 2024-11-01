@@ -54,6 +54,67 @@ function validate(validatableInputs: Validatable) {
   return isValid;
 }
 
+// Project List Class
+class ProjectList {
+  templateElement: HTMLTemplateElement;
+  hostElement: HTMLDivElement;
+  templateChildElement: HTMLElement;
+
+  constructor(private type: "active" | "finished") {
+    // get the UI template with ID: project-list
+    this.templateElement = document.getElementById(
+      "project-list"
+    ) as HTMLTemplateElement;
+
+    // get the host UI template with ID: app
+    this.hostElement = document.getElementById("app") as HTMLDivElement;
+
+    // get the deepCopy of the template content
+    const importedTempleNode = document.importNode(
+      this.templateElement.content,
+      true
+    );
+
+    // from the deep copy get the first Child Element
+    this.templateChildElement =
+      importedTempleNode.firstElementChild as HTMLElement;
+    console.log("child", this.templateChildElement);
+    this.templateChildElement.id = `${type}-projects`;
+
+    // once the place, where to, attach the project list section
+    this.attach();
+
+    // render the active || finished project into project list section
+    this.renderContent();
+  }
+
+  /**
+   * Create id: active-project-list || finished-project-list
+   * attach the id to project section to identify which project it is
+   * add the heading to that section based on the project type: this.type
+   * */
+
+  private renderContent() {
+    const listId = `${this.type}-project-list`;
+    // add id to Unordered List in projects templatechildElement
+
+    this.templateChildElement.querySelector("ul")!.id = listId;
+
+    // add the heading h2 text in that section
+    this.templateChildElement.querySelector(
+      "h2"
+    )!.textContent = `${this.type.toUpperCase()} PROJECTS`;
+  }
+
+  private attach() {
+    this.hostElement.insertAdjacentElement(
+      "beforeend",
+      this.templateChildElement
+    );
+  }
+}
+
+// Project Input Class
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -166,4 +227,9 @@ class ProjectInput {
   }
 }
 
+// form Initalized
 const dragDrop = new ProjectInput();
+// active project Section Initalized
+const activeProjectList = new ProjectList("active");
+// finished project Section Initalized
+const finishedProjectList = new ProjectList("finished");
